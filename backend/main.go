@@ -253,7 +253,7 @@ func main() {
 	fs := http.FileServer(http.Dir("../frontend/dist"))
 	http.Handle("/", fs)
 
-	port := ":5000"
+	port := ":5555"
 	log.Printf("Server starting on port %s", port)
 	if err := http.ListenAndServe(port, nil); err != nil {
 		log.Fatal("ListenAndServe error: ", err)

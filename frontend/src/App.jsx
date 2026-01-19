@@ -15,7 +15,7 @@ function App() {
     }
 
     // Create WebSocket connection
-    const ws = new WebSocket('ws://localhost:5000/ws');
+    const ws = new WebSocket('ws://192.168.1.100:5555/ws');
 
     ws.onopen = () => {
       console.log('WebSocket connected');
@@ -57,11 +57,24 @@ function App() {
     setWebsocket(ws);
   };
 
+  const handleDisconnect = () => {
+    if (wsRef.current) {
+      wsRef.current.close();
+      wsRef.current = null;
+    }
+    setWebsocket(null);
+    setIsConnected(false);
+  };
+
   return (
     <div className="App">
       <div className="container">
         <h1>SSH Web Client</h1>
-        <ConnectionForm onConnect={handleConnect} isConnected={isConnected} />
+        <ConnectionForm
+          onConnect={handleConnect}
+          onDisconnect={handleDisconnect}
+          isConnected={isConnected}
+        />
         <div className="terminal-container">
           {websocket && <Terminal websocket={websocket} />}
           {!websocket && (

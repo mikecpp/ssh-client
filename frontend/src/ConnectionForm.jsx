@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './ConnectionForm.css';
 
-const ConnectionForm = ({ onConnect, isConnected }) => {
+const ConnectionForm = ({ onConnect, onDisconnect, isConnected }) => {
   const [credentials, setCredentials] = useState({
     host: '',
     port: '22',
@@ -21,68 +21,65 @@ const ConnectionForm = ({ onConnect, isConnected }) => {
     });
   };
 
+  const handleDisconnect = () => {
+    if (onDisconnect) {
+      onDisconnect();
+    }
+  };
+
   return (
     <div className="connection-form">
-      <h2>SSH Connection</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="host">Host:</label>
-          <input
-            type="text"
-            id="host"
-            name="host"
-            value={credentials.host}
-            onChange={handleChange}
-            placeholder="example.com"
-            required
-            disabled={isConnected}
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="port">Port:</label>
-          <input
-            type="text"
-            id="port"
-            name="port"
-            value={credentials.port}
-            onChange={handleChange}
-            placeholder="22"
-            required
-            disabled={isConnected}
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={credentials.username}
-            onChange={handleChange}
-            placeholder="user"
-            required
-            disabled={isConnected}
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={credentials.password}
-            onChange={handleChange}
-            placeholder="password"
-            required
-            disabled={isConnected}
-          />
-        </div>
-
-        <button type="submit" disabled={isConnected}>
-          {isConnected ? 'Connected' : 'Connect'}
+      <form onSubmit={handleSubmit} className="inline-form">
+        <input
+          type="text"
+          name="host"
+          value={credentials.host}
+          onChange={handleChange}
+          placeholder="Host"
+          required
+          disabled={isConnected}
+          className="input-short"
+        />
+        <input
+          type="text"
+          name="port"
+          value={credentials.port}
+          onChange={handleChange}
+          placeholder="Port"
+          required
+          disabled={isConnected}
+          className="input-short input-port"
+        />
+        <input
+          type="text"
+          name="username"
+          value={credentials.username}
+          onChange={handleChange}
+          placeholder="Username"
+          required
+          disabled={isConnected}
+          className="input-short"
+        />
+        <input
+          type="password"
+          name="password"
+          value={credentials.password}
+          onChange={handleChange}
+          placeholder="Password"
+          required
+          disabled={isConnected}
+          className="input-short"
+        />
+        <button type="submit" disabled={isConnected} className="btn-connect">
+          Connect
+        </button>
+        <button
+          type="button"
+          onClick={handleDisconnect}
+          disabled={!isConnected}
+          className="btn-disconnect"
+        >
+          Disconnect
         </button>
       </form>
     </div>
