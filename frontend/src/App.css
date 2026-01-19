@@ -1,0 +1,36 @@
+.App {
+  min-height: 100vh;
+  background: #1a1a1a;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-size: 28px;
+  text-align: center;
+}
+
+.terminal-container {
+  background: #1e1e1e;
+  border-radius: 8px;
+  height: 600px;
+  overflow: hidden;
+  border: 1px solid #333;
+}
+
+.terminal-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #888;
+  font-size: 16px;
+  padding: 20px;
+  text-align: center;
+}
