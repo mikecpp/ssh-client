@@ -1,0 +1,33 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+*.md
+PRD.md
+README.md
+
+# IDE
+.vscode
+.idea
+.claude
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.yml
+backend/Dockerfile
+backend/.dockerignore
+frontend/Dockerfile
+frontend/.dockerignore
+
+# Build artifacts
+node_modules
+dist
+*.log
+.env
+
+# Backend specific
+backend/main

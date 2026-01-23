@@ -1,0 +1,21 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+main
+
+# Test files
+*_test.go
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+
+# Docker
+Dockerfile
+.dockerignore

@@ -249,13 +249,14 @@ func cleanup(session *SSHSession) {
 func main() {
 	http.HandleFunc("/ws", handleWebSocket)
 
-	// Serve static files from frontend dist (Vite output)
-	fs := http.FileServer(http.Dir("../frontend/dist"))
-	http.Handle("/", fs)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("SSH Client Backend API"))
+	})
 
-	port := ":5555"
-	log.Printf("Server starting on port %s", port)
-	if err := http.ListenAndServe(port, nil); err != nil {
+	addr := "0.0.0.0:5555"
+	log.Printf("Server starting on %s", addr)
+	if err := http.ListenAndServe(addr, nil); err != nil {
 		log.Fatal("ListenAndServe error: ", err)
 	}
 }

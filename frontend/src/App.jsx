@@ -14,8 +14,10 @@ function App() {
       wsRef.current.close();
     }
 
-    // Create WebSocket connection
-    const ws = new WebSocket('ws://192.168.1.100:5555/ws');
+    // Create WebSocket connection using relative URL
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const wsUrl = `${protocol}//${window.location.host}/ws`;
+    const ws = new WebSocket(wsUrl);
 
     ws.onopen = () => {
       console.log('WebSocket connected');
